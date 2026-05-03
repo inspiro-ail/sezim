@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediDiagnost - Диагностика болезней по симптомам</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>MediDiagnost</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Главная</a></li>
+                <li><a href="#about" class="nav-link">О сайте</a></li>
+                <li><a href="#contact" class="nav-link">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="gradient-text">Диагностика болезней</span>
+                <br>
+                по симптомам
+            </h1>
+            <p class="hero-subtitle">Введите симптомы, загрузите фото или опишите жалобы и получите возможные диагнозы</p>
+            
+            <!-- Tabs -->
+            <div class="tabs-container">
+                <button class="tab-btn active" data-tab="symptoms-tab">📝 По симптомам</button>
+                <button class="tab-btn" data-tab="ai-tab">🤖 Анализ ИИ</button>
+            </div>
+
+            <!-- Symptoms Tab -->
+            <div class="tab-content active" id="symptoms-tab">
+                <!-- Search Box -->
+                <div class="search-container">
+                    <div class="search-wrapper">
+                        <input 
+                            type="text" 
+                            id="symptomInput" 
+                            class="search-input" 
+                            placeholder="Введите симптом (например: головная боль, кашель...)"
+                            autocomplete="off"
+                        >
+                        <i class="fas fa-search search-icon"></i>
+                        <ul class="autocomplete-list" id="autocompleteList"></ul>
+                    </div>
+                    <button class="btn btn-primary" id="searchBtn">
+                        <i class="fas fa-magnifying-glass"></i>
+                        Поиск
+                    </button>
+                </div>
+
+                <!-- Selected Symptoms -->
+                <div class="selected-symptoms">
+                    <div id="symptomsContainer" class="symptoms-container"></div>
+                </div>
+            </div>
+
+            <!-- AI Tab -->
+            <div class="tab-content" id="ai-tab">
+                <div class="ai-container">
+                    <!-- Photo Upload -->
+                    <div class="ai-section">
+                        <label class="ai-label">📸 Загрузите фото области поражения</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="photoUpload" accept="image/*" class="file-input">
+                            <div class="file-input-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Выберите фото или перетащите сюда</span>
+                            </div>
+                        </div>
+                        <img id="photoPreview" class="photo-preview" style="display: none;">
+                    </div>
+
+                    <!-- Description -->
+                    <div class="ai-section">
+                        <label class="ai-label">📋 Опишите ваши жалобы и симптомы</label>
+                        <textarea 
+                            id="aiDescription" 
+                            class="ai-textarea" 
+                            placeholder="Например: У меня болит горло, высокая температура, кашель уже 3 дня..."
+                            rows="5"
+                        ></textarea>
+                    </div>
+
+                    <!-- Analysis Button -->
+                    <button class="btn btn-primary" id="analyzeBtn" style="width: 100%;">
+                        <i class="fas fa-brain"></i>
+                        Анализ с помощью ИИ
+                    </button>
+                    <p class="ai-info">✨ ИИ проанализирует фото и описание, чтобы предложить возможные диагнозы</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="results-section" id="results">
+        <div class="results-container">
+            <!-- Loading -->
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Анализируем симптомы...</p>
+            </div>
+
+            <!-- Results Grid -->
+            <div class="results-grid" id="resultsGrid">
+                <!-- Results will be inserted here -->
+            </div>
+
+            <!-- No Results -->
+            <div class="no-results" id="noResults">
+                <i class="fas fa-search"></i>
+                <p>Симптомы не найдены. Попробуйте другие варианты.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2>О MediDiagnost</h2>
+            <div class="about-content">
+                <div class="about-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Интеллектуальный анализ</h3>
+                    <p>Система анализирует введённые симптомы и сопоставляет их с базой 50+ заболеваний</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Информативность</h3>
+                    <p>Получите подробную информацию о каждом заболевании и рекомендации</p>
+                </div>
+                <div class="about-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>Доступность</h3>
+                    <p>Используйте на любом устройстве - адаптивный дизайн для всех экранов</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <p>&copy; 2026 MediDiagnost. Все права защищены.</p>
+            <p class="disclaimer">⚠️ Это информационный сайт. Для точного диагноза обратитесь к врачу.</p>
+        </div>
+    </footer>
+
+    <!-- Disease Details Modal -->
+    <div class="modal" id="diseaseModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
